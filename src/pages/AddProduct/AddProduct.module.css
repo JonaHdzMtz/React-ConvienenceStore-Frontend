@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.form{
+    padding-top: 30px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form input{
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #1f1f1f;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.form button{
+    margin: 20px 50px 0 50px;
+    cursor: pointer;
+    height: 30px;
+    font-weight: bold;
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+    transition: 0.3s;
+    border-style: hidden;
+}
+
+.form button:hover{
+    scale: 1.02;
+}
+
+@media (max-width : 670px){
+    .form{
+        width: 95%;
+    }
+}
