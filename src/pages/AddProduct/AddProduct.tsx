@@ -3,8 +3,10 @@ import styles from "./AddProduct.module.css";
 import { Topbar } from "../../components/topBar/Topbar";
 import { ProductDTO } from "../../interface/ProductDTO";
 import { registerProductAsync } from "../../services/ProductService";
+import { useNavigate } from "react-router-dom";
 //MAIN
 export const AddProduct = () => {
+  const navigate = useNavigate()
   const [product, setProduct] = useState<ProductDTO>({
     idProduct: 0,
     price: 0,
@@ -18,9 +20,9 @@ export const AddProduct = () => {
   const productName = useRef<HTMLInputElement | null>(null);
   const stock = useRef<HTMLInputElement | null>(null);
 
-  const handleform = (event: React.FormEvent) => {
+  const handleform =  (event: React.FormEvent) => {
     event.preventDefault();
-    setProduct({
+     setProduct({ //no da tiempo de guardar los cambios antes de enviar, mejor usar e.taget o directo crear un objeto pasando useRef
       idProduct: 0,
       price: parseFloat(price.current!!.value),
       productDescription: productDescription.current?.value
@@ -33,11 +35,22 @@ export const AddProduct = () => {
     saveProduct();
   };
   const saveProduct = () => {
-    registerProductAsync(product).then((request) => {
+    const x:ProductDTO ={
+      idProduct: 0,
+      price: parseFloat(price.current!!.value),
+      productDescription: productDescription.current?.value
+        ? productDescription.current.value
+        : "",
+      stock: parseFloat(stock.current!!.value),
+      productName: productName.current!!.value,
+    }
+
+    registerProductAsync(x).then((request) => {
       if (request?.ok) {
         alert("producto registrado con exito");
+        navigate(-1)
       } else {
-        alert("ocurrio un errora");
+        alert("ocurrio un error");
       }
     });
   };

@@ -21,7 +21,7 @@ export const Topbar = () => {
       <div className={styles.row}>
         <ul className={styles.list}>
           <li className={styles.listItem} >
-            <a className={styles.anchor} href="">
+            <a className={styles.anchor} href="" onClick={()=>navigate("/historial")}>
               Historial de ventas|
             </a>
           </li>

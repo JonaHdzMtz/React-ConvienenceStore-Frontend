@@ -2,7 +2,11 @@ import { Topbar } from "../../components/topBar/Topbar";
 import { useEffect, useState } from "react";
 import { getAllProductsAsync } from "../../services/ProductService";
 import { ProductDTO } from "../../interface/ProductDTO";
+import { Outlet, useNavigate } from "react-router-dom";
+
 export const ListProduct = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState<ProductDTO[]>([]);
   useEffect(() => {
     const data = getAllProductsAsync().then((data: ProductDTO[]) => {
@@ -11,8 +15,9 @@ export const ListProduct = () => {
   }, []);
 
   const handleAddProduct = () => {
-    
-  }
+    console.log("clic");
+    navigate("/GestionProductos/anadirProducto")
+  };
 
   return (
     <>
@@ -40,6 +45,7 @@ export const ListProduct = () => {
           ))}
         </tbody>
       </table>
+     
     </>
   );
 };

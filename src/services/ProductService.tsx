@@ -6,7 +6,6 @@ export const getAllProductsAsync = async () => {
       "http://localhost:5160/Product/obtenerProductos"
     );
     const data = await result.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -15,6 +14,7 @@ export const getAllProductsAsync = async () => {
 
 export const registerProductAsync = async (product: ProductDTO) => {
   try {
+    console.log("producto a enviar: " + JSON.stringify(product))
     const request = await fetch(
       "http://localhost:5160/Product/registrarProducto",
       {
